@@ -7,7 +7,7 @@ import cors from 'cors';
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
-const ORIGIN = process.env.ORIGIN || ['http://localhost:3000', '*'];
+const ORIGIN = process.env.ORIGIN ? process.env.ORIGIN : ['http://localhost:3000', '*'];
 
 const app = express();
 
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 // app.use(express.static(path.join(__dirname, '/public')))
 
 const expressServer = app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT} and origin ${ORIGIN}`);
 })
 
 const io = new Server(expressServer, {
